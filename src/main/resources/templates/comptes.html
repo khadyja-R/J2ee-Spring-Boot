@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="template1">
+
+<head>
+<meta charset="UTF-8">
+<title>Comptes</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card border-primary mb-5">
+				<div class="card-header bg-primary text-white">Consultation
+					d'un compte</div>
+				<div class="card-body">
+				
+				<form th:action="@{/consulterCompte}" method="get">
+				<div>
+				<label>Code Compte</label>
+				<input type="text" name="codeCompte">
+				<button type="submit" class="btn btn-primary">Ok</button>
+				</div>
+				</form>
+				
+				
+				</div>
+			</div>
+
+
+			<div class="card border-primary" th:if="${compte}">
+				<div class="card-header bg-primary text-white">les
+					informations sur le compte</div>
+				<div class="card-body">
+				<div>
+				<label>Code:</label>
+				<label th:text="${compte.codeCompte}"></label>
+				</div>
+				
+				<div>
+				<label>Solde:</label>
+				<label th:text="${compte.solde}"></label>
+				</div>
+				<div>
+				<label>Date de Creation:</label>
+				<label th:text="${compte.dateCreation}"></label>
+				</div>
+				
+				<div>
+				<label>Type:</label>
+				<label th:text="${compte.class.simpleName}"></label>
+				</div>
+				
+				<div th:if="${compte.class.simpleName=='CompteCourant'">
+				<label>Decouvert:</label>
+				<label th:text="${compte.decouvert}"></label>
+				</div>
+				
+				<div th:if="${compte.class.simpleName=='CompteEpargne'">
+				<label>Taux:</label>
+				<label th:text="${compte.taux}"></label>
+				</div>
+				
+				</div>
+			</div>
+
+
+		</div>
+		<div class="col-md-6">
+			<div class="card border-primary mb-5" th:if="${compte}">
+				<div class="card-header bg-primary text-white">Operation sur
+					le compte</div>
+				<div class="card-body"></div>
+			</div>
+			<div class="card border-primary" th:if="${compte}">
+				<div class="card-header bg-primary text-white">Liste des
+					operations</div>
+				<div class="card-body"></div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+	</div>
+</body>
+</html>

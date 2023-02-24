@@ -8,9 +8,9 @@
 <body>
 <div class="container">
 <form th:action="@{index}" method="get">
-
+<p></p>
 <label>Mot Cle:</label>
-<input type="text" name="mc"/>
+<input type="text" name="mc" placeholder="chercher une designation" th:value="${mc}"/>
 <button class="btn btn-primary">chercher</button>
 
 </form>
@@ -24,6 +24,7 @@
 <th>Designation </th>
 <th>Prix</th>
 <th>Quantite </th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
@@ -32,6 +33,7 @@
 <td th:text="${p.designation}"></td>
 <td th:text="${p.prix}"></td>
 <td th:text="${p.quantitie}"></td>
+<td><a th:href="@{delete(id=${p.id},page=${pagecourant},size=${size},mc=${mc})}">Delete</a></td>
 </tr>
 </tbody>
 </table>
@@ -39,7 +41,7 @@
 <div class="container">
 <ul class="nav nav-pills">
 <li th:class="${pagecourant}==${status.index}?'nav-item active':'nav-item'"  th:each="pg,status:${pages}">
-<a  class="nav-link"  th:href="@{index(page=${status.index}, size=${size})}" th:text="${status.index}" ></a>
+<a  class="nav-link"  th:href="@{index(page=${status.index}, size=${size}, mc=${mc})}" th:text="${status.index}" ></a>
 </li>
 </ul>
 </ul>
